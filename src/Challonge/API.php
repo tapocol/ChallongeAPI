@@ -50,12 +50,15 @@ class ChallongeAPI
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params, '', '&'));
                 break;
             case 'put':
+                $params['_method'] = 'put';
                 curl_setopt($ch, CURLOPT_URL, $this->prepareURL($url_append));
-                curl_setopt($ch, CURLOPT_PUT, true);
+                curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params, '', '&'));
                 break;
             case 'delete':
+                $params['_method'] = 'delete';
                 curl_setopt($ch, CURLOPT_URL, $this->prepareURL($url_append));
+                curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
                 break;
             default:
