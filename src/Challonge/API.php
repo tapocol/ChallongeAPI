@@ -59,7 +59,7 @@ class ChallongeAPI
                 $params['_method'] = 'delete';
                 curl_setopt($ch, CURLOPT_URL, $this->prepareURL($url_append));
                 curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params, '', '&'));
                 break;
             default:
                 return false;
@@ -80,7 +80,19 @@ class ChallongeAPI
 
     protected function handleResponse($response)
     {
-        return new SimpleXMLElement($response);
+        libxml_use_internal_errors(true);
+        try{
+            $return_object = new SimpleXMLElement($response);
+            //For some html responses, an exception isn't thrown.
+            if(!$return_object){
+                return simplexml_load_string('<local><error> Unable to parse XML </error></local>');
+            }
+        }
+        catch(Exception $e)
+        {
+            return simplexml_load_string('<local><error> Unable to parse XML </error></local>');
+        }
+        return $return_object;
     }
 }
 
