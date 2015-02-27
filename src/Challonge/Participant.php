@@ -6,10 +6,11 @@
 class ChallongeParticipant extends ChallongeAPI
 {
     protected $tournament_id;
+	const PREFIX = "tournaments";
 
     public function __construct($tournament_id)
     {
-        $this->tournament_id = $tournament_id;
+        $this->tournament_id = self::PREFIX."/".$tournament_id;
     }
 
     public function reqIndex()
@@ -21,6 +22,11 @@ class ChallongeParticipant extends ChallongeAPI
     {
         return $this->request("/{$this->tournament_id}/participants", 'post');
     }
+	
+	public function reqBulkAdd()
+    {
+        return $this->request("/{$this->tournament_id}/participants/bulk_add", 'post');
+    }
 
     public function reqShow($id)
     {
@@ -30,6 +36,11 @@ class ChallongeParticipant extends ChallongeAPI
     public function reqUpdate($id)
     {
         return $this->request("/{$this->tournament_id}/participants/$id", 'put');
+    }
+	
+	public function reqCheckIn($id)
+    {
+        return $this->request("/{$this->tournament_id}/participants/$id/check_in", 'post');
     }
 
     public function reqDestroy($id)
@@ -42,4 +53,6 @@ class ChallongeParticipant extends ChallongeAPI
         return $this->request("/{$this->tournament_id}/participants/randomize", 'post');
     }
 }
+
+
 
