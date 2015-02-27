@@ -1,7 +1,10 @@
 SUMMARY
 -------
 
-This is a thin PHP library for integration with the Challonge API. Uses cURL for http request and SimpleXML for the response handling. Just appends API Key
+This is a thin PHP library for integration with the Challonge API. Uses cURL for http request and SimpleXML for the response handling. Just appends API Key.
+Master by craigjackson forked from wshatch's master.
+This fork updates to api v1 and adds "attachments" api requests.
+by Mano82
 
 EXAMPLE
 -------

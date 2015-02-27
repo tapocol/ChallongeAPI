@@ -6,10 +6,11 @@
 class ChallongeMatch extends ChallongeAPI
 {
     protected $tournament_id;
+	const PREFIX = "tournaments";
 
     public function __construct($tournament_id)
     {
-        $this->tournament_id = $tournament_id;
+        $this->tournament_id = self::PREFIX."/".$tournament_id;
     }
 
     public function reqIndex()
