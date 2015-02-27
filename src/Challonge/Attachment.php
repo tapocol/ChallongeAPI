@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Challonge's Match API class
  */
 class ChallongeAttachment extends ChallongeAPI
